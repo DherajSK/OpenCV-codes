@@ -116,21 +116,19 @@ for contour in contours:
     else:
         circles = cv2.HoughCircles(gray, cv2.HOUGH_GRADIENT, 1.2, 100)
 
-# ensure at least some circles were found
-        if circles is not None:
             # convert the (x, y) coordinates and radius of the circles to integers
-            circle = np.round(circles[0, :]).astype("int")
+        circle = np.round(circles[0, :]).astype("int")
             # loop over the (x, y) coordinates and radius of the circles
-            for (aaa, bbb, r) in circle:
+        for (aaa, bbb, r) in circle:
                 #print(circle)
                 # draw the circle in the output image, then draw a rectangle
                 # corresponding to the center of the circle
                 #cv2.circle(img, (x, y), r, (0, 255, 0), 4)
-                cv2.putText(img, 'circle', (aaa, bbb),
+            cv2.putText(img, 'circle', (aaa, bbb),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 2)
+            if(aaa!=x and bbb!=y):
+                cv2.putText(img, 'ellipse', (x, y),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 2)
-                if(aaa!=x and bbb!=y):
-                    cv2.putText(img, 'ellipse', (x, y),
-                                cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 2)
             #if ellipse is not None:
 
 
